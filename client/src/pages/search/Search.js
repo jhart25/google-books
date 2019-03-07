@@ -8,7 +8,7 @@ import { Alert } from 'reactstrap';
 
 class Search extends Component {
     state = {
-       
+        search: { title },
         authors: [],
         description: [],
         image: [],
@@ -45,12 +45,6 @@ class Search extends Component {
                 <Saved></Saved>
                 <Container style = {{ minHeight: "80%" }}>
                     <h1 className = "text-center">Search A Book Title</h1>
-                    <Alert
-                        type = "danger"
-                        style = {{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-                    >
-                        {this.state.error}
-                    </Alert>
                     <Col
                         handleFormSubmit = {this.handleFormSubmit}
                         handleInputChange = {this.handleInputChange}
