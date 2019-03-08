@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import NavBar from "../../components/Nav";
 import Saved from "../saved/index";
-import { Col, Row, Container } from "../../components/Grid/index";
+import { Container } from "../../components/Grid/index";
 import { Alert } from 'reactstrap';
+import SearchForm from "../../components/SearchForm";
+import SearchResults from "../../components/SearchResults";
 
 
 class Search extends Component {
     state = {
-        search: { title },
+        search: "",
         authors: [],
         description: [],
         image: [],
@@ -43,14 +45,20 @@ class Search extends Component {
                 <NavBar></NavBar>
                 <Search></Search>
                 <Saved></Saved>
-                <Container style = {{ minHeight: "80%" }}>
-                    <h1 className = "text-center">Search A Book Title</h1>
-                    <Col
-                        handleFormSubmit = {this.handleFormSubmit}
-                        handleInputChange = {this.handleInputChange}
-                        saved = {this.state.saved}
+                <Container style={{ minHeight: "80%" }}>
+                    <h1 className="text-center">Search A Book Title</h1>
+                    <Alert
+                        type="danger"
+                        style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
+                    >
+                        {this.state.error}
+                    </Alert>
+                    <SearchForm
+                        handleFormSubmit={this.handleFormSubmit}
+                        handleInputChange={this.handleInputChange}
+                        saved={this.state.saved}
                     />
-                    <Row results = {this.state.results} />
+                    <SearchResults results={this.state.results} />
                 </Container>
             </div>
         );
